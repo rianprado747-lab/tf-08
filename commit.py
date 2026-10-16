@@ -1,7 +1,7 @@
 class Commit(): # iniciando a criação da Classe
     def __init__(self,id, mensagem, autor, pai = None): # método construtor 
         self.id = id
-        self.mensgem = mensagem
+        self.mensagem = mensagem
         self.autor = autor
         self.pai = pai
 
@@ -27,8 +27,9 @@ class Repositorio():
 
     def log(self):
         if not self.head:
-            print('Nenhum commit realizado')\
-
+            print('Nenhum commit realizado')
+            return
+        
         self.head.historico()
 
 
@@ -39,3 +40,12 @@ class Repositorio():
             total += 1
             atual = atual.pai# a cada repetição atuaa anda para o commit pai
         return total
+
+
+repositorio = Repositorio('Projeto TF-08', 'Rian Prado - RA 6326066')
+repositorio.log()
+repositorio.commitar('Cria o projeto')
+repositorio.commitar('Adiciona o README')
+repositorio.commitar('Corrige o título do README')
+repositorio.log()
+print(repositorio.totaL_commits() , 'Commits realizados')
